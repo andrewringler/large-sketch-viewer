@@ -7,9 +7,7 @@ import processing.core.PImage;
 public class ViewerWindowSketch extends PApplet {
 	private final int W;
 	private final int H;
-	private PImage img1;
-	private PImage img2;
-	boolean drawing1 = true;
+	private PImage img;
 	
 	public ViewerWindowSketch(PApplet parent, int width, int height) {
 		parent.registerMethod("dispose", this);
@@ -22,34 +20,18 @@ public class ViewerWindowSketch extends PApplet {
 	}
 	
 	public void setup() {
-		img1 = createImage(W, H, RGB);
-		img2 = createImage(W, H, RGB);
+		img = createImage(W, H, RGB);
+		noLoop();
 	}
 	
 	public void draw() {
-		if (drawing1) {
-			image(img1, 0, 0);
-		} else {
-			image(img2, 0, 0);
-		}
+		image(img, 0, 0);
 	}
 	
 	public void update(PGraphics g) {
-		if (g != null && img1 != null && img2 != null) {
-			/*
-			 * write into the image buffer that we are not
-			 * currently reading from in our draw loop
-			 */
-			if (drawing1) {
-				img2.copy(g, 0, 0, g.width, g.height, 0, 0, img2.width, img2.height);
-			} else {
-				img1.copy(g, 0, 0, g.width, g.height, 0, 0, img1.width, img1.height);
-			}
-			/*
-			 * notify our draw loop it should now read from
-			 * the other image buffer
-			 */
-			drawing1 = !drawing1;
+		if (g != null && img != null) {
+			img.copy(g, 0, 0, g.width, g.height, 0, 0, img.width, img.height);
+			redraw();
 		}
 	}
 	
