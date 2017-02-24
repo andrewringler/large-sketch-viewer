@@ -9,8 +9,7 @@ public class ViewerWindowSketch extends PApplet {
 	private final int H;
 	private PImage img;
 	
-	public ViewerWindowSketch(PApplet parent, int width, int height) {
-		parent.registerMethod("dispose", this);
+	public ViewerWindowSketch(int width, int height) {
 		W = width;
 		H = width;
 	}
@@ -33,10 +32,5 @@ public class ViewerWindowSketch extends PApplet {
 			img.copy(g, 0, 0, g.width, g.height, 0, 0, img.width, img.height);
 			redraw();
 		}
-	}
-	
-	public void dispose() {
-		// TODO this seems to still be spewing errors…
-		exit();
 	}
 }
