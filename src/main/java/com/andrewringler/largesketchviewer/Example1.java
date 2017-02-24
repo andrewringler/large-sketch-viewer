@@ -36,7 +36,7 @@ public class Example1 extends PApplet {
 		if (rectSize < 10) {
 			rectGrowing = true;
 		}
-		if (rectSize > width * 0.6) {
+		if (rectSize > height * 0.6) {
 			rectGrowing = false;
 		}
 	}

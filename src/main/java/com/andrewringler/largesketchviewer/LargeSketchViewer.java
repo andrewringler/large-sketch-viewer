@@ -37,7 +37,10 @@ public class LargeSketchViewer {
 	
 	// post – after draw() has exited (not safe to draw)
 	public void post() {
-		pSmall.update(p.getGraphics());
+		if (p.frameCount % 10 == 0) {
+			// limit updates for performance
+			pSmall.update(p.getGraphics());
+		}
 	}
 	
 	/*
