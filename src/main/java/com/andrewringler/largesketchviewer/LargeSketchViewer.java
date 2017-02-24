@@ -10,8 +10,8 @@ public class LargeSketchViewer {
 	
 	public LargeSketchViewer(PApplet p) {
 		this.p = p;
-		// register draw with main sketch to capture screen
-		p.registerMethod("draw", this);
+		// register post with main sketch to capture screen
+		p.registerMethod("post", this);
 		
 		int buffer = 100;
 		float smallWindowWidth = p.width;
@@ -35,8 +35,8 @@ public class LargeSketchViewer {
 		pSmall.registerMethod("dispose", this);
 	}
 	
-	//	post – after draw() has exited (not safe to draw)
-	public void draw() {
+	// post – after draw() has exited (not safe to draw)
+	public void post() {
 		pSmall.update(p.getGraphics());
 	}
 	
