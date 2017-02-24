@@ -3,6 +3,9 @@ package com.andrewringler.largesketchviewer;
 import processing.core.PApplet;
 
 public class Example1 extends PApplet {
+	float rectSize = 10;
+	boolean rectGrowing = true;
+	
 	public Example1() {
 		// DON'T CALL ANY PROCESSING CODE (PApplet) FROM HERE.		
 	}
@@ -24,6 +27,16 @@ public class Example1 extends PApplet {
 		ellipse(offset, height - offset - size, size, size);
 		ellipse(width - offset - size, offset, size, size);
 		ellipse(width - offset - size, height - offset - size, size, size);
+		
+		rectMode(CENTER);
+		rect(width / 2f, height / 2f, rectSize, rectSize);
+		rectSize += rectGrowing ? 0.8 : -0.8;
+		if (rectSize < 10) {
+			rectGrowing = true;
+		}
+		if (rectSize > width * 0.6) {
+			rectGrowing = false;
+		}
 	}
 	
 	public static void main(String args[]) {
