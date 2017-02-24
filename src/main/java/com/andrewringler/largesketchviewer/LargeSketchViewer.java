@@ -28,7 +28,7 @@ public class LargeSketchViewer {
 			smallWindowWidth = smallWindowHeight * ratio;
 		}
 		
-		pSmall = new ViewerWindowSketch(round(smallWindowWidth), round(smallWindowHeight));
+		pSmall = new ViewerWindowSketch(p, round(smallWindowWidth), round(smallWindowHeight));
 		PApplet.runSketch(new String[] { "--window-color=#000000", ViewerWindowSketch.class.getCanonicalName() }, pSmall);
 		
 		// register with small window in case user closes it

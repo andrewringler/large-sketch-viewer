@@ -20,6 +20,8 @@ public class Example1 extends PApplet {
 	}
 	
 	public void draw() {
+		background(0);
+		
 		int offset = 20;
 		int size = 50;
 		ellipseMode(CORNER);
