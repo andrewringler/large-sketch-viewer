@@ -40,9 +40,13 @@ public class ViewerWindowSketch extends PApplet {
 		fill(0);
 		stroke(0);
 		strokeWeight(1);
-		textAlign(CENTER, BOTTOM);
 		textSize(textSize);
 		
+		// realized framerate
+		textAlign(LEFT, TOP);
+		text("fps: " + parent.frameRate, MARGIN, TEXT_OFFSET);
+		
+		textAlign(CENTER, BOTTOM);
 		text(parent.width + "px", width / 2f, height - TEXT_OFFSET);
 		float lineY = height - TEXT_OFFSET - (textSize / 2f);
 		line(MARGIN, lineY, width / 2f - TEXT_BUFFER, lineY);

@@ -1,14 +1,16 @@
 package com.andrewringler.largesketchviewer;
 
-import static processing.core.PApplet.round;
+import static java.lang.Math.round;
 
 import processing.core.PApplet;
 
 public class LargeSketchViewer {
 	private final PApplet p;
 	private ViewerWindowSketch pSmall;
+	private int lastUpdateMillis;
+	private int desiredMillisBetweenUpdates = round(1000f / 60f);
 	
-	public LargeSketchViewer(PApplet p) {
+	public LargeSketchViewer(PApplet p, float frameRate) {
 		this.p = p;
 		// register post with main sketch to capture screen
 		p.registerMethod("post", this);
@@ -33,13 +35,24 @@ public class LargeSketchViewer {
 		
 		// register with small window in case user closes it
 		pSmall.registerMethod("dispose", this);
+		
+		if (frameRate > 0) {
+			desiredMillisBetweenUpdates = round(1000f / frameRate);
+		}
+		lastUpdateMillis = p.millis();
+	}
+	
+	public LargeSketchViewer(PApplet p) {
+		this(p, 60);
 	}
 	
 	// post – after draw() has exited (not safe to draw)
 	public void post() {
-		if (p.frameCount % 10 == 0) {
-			// limit updates for performance
+		// limit update frequency to desired frame rate
+		int millisSinceLastUpdate = p.millis() - lastUpdateMillis;
+		if (millisSinceLastUpdate >= desiredMillisBetweenUpdates) {
 			pSmall.update(p.getGraphics());
+			lastUpdateMillis = p.millis();
 		}
 	}
 	

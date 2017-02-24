@@ -11,12 +11,15 @@ public class Example1 extends PApplet {
 	}
 	
 	public void settings() {
-		size(1920, 1080, "processing.opengl.PGraphics3D");
+		//		size(1920, 1080, "processing.opengl.PGraphics3D");
+		size(1920, 1080, "processing.awt.PGraphicsJava2D");
 	}
 	
 	public void setup() {
+		frameRate(60);
 		background(0);
-		new LargeSketchViewer(this);
+		new LargeSketchViewer(this, 15); // slow frame rate for performance
+		//		new LargeSketchViewer(this);
 	}
 	
 	public void draw() {
@@ -32,7 +35,7 @@ public class Example1 extends PApplet {
 		
 		rectMode(CENTER);
 		rect(width / 2f, height / 2f, rectSize, rectSize);
-		rectSize += rectGrowing ? 1.8 : -1.8;
+		rectSize += rectGrowing ? 4 : -4;
 		if (rectSize < 10) {
 			rectGrowing = true;
 		}
