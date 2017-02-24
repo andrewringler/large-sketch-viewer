@@ -1,5 +1,7 @@
 package com.andrewringler.largesketchviewer;
 
+import static processing.core.PApplet.round;
+
 import processing.core.PApplet;
 
 public class LargeSketchViewer {
@@ -8,9 +10,26 @@ public class LargeSketchViewer {
 	
 	public LargeSketchViewer(PApplet p) {
 		this.p = p;
+		// register draw with main sketch to capture screen
 		p.registerMethod("draw", this);
-		pSmall = new ViewerWindowSketch(200, 200);
-		PApplet.runSketch(new String[] { "--bgcolor=#000000", ViewerWindowSketch.class.getCanonicalName() }, pSmall);
+		
+		int buffer = 100;
+		float smallWindowWidth = p.width;
+		float smallWindowHeight = p.height;
+		float ratio = (float) p.width / (float) p.height;
+		if (smallWindowWidth > p.displayWidth) {
+			// sketch is too wide, shrink it horizontally
+			smallWindowWidth = p.displayWidth - buffer;
+			smallWindowHeight = smallWindowWidth / ratio;
+		}
+		if (smallWindowHeight > p.displayHeight) {
+			// sketch is too tall, shrink it
+			smallWindowHeight = p.displayHeight - buffer;
+			smallWindowWidth = smallWindowHeight * ratio;
+		}
+		
+		pSmall = new ViewerWindowSketch(round(smallWindowWidth), round(smallWindowHeight));
+		PApplet.runSketch(new String[] { "--window-color=#000000", ViewerWindowSketch.class.getCanonicalName() }, pSmall);
 		
 		// register with small window in case user closes it
 		pSmall.registerMethod("dispose", this);

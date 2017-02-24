@@ -11,7 +11,7 @@ public class Example1 extends PApplet {
 	}
 	
 	public void settings() {
-		size(600, 600, "processing.opengl.PGraphics3D");
+		size(1920, 1080, "processing.opengl.PGraphics3D");
 	}
 	
 	public void setup() {
@@ -41,6 +41,6 @@ public class Example1 extends PApplet {
 	
 	public static void main(String args[]) {
 		// https://processing.org/tutorials/eclipse/
-		PApplet.main(new String[] { "--bgcolor=#000000", Example1.class.getCanonicalName() });
+		PApplet.main(new String[] { "--window-color=#000000", Example1.class.getCanonicalName() });
 	}
 }

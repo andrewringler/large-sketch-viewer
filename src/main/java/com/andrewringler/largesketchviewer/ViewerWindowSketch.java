@@ -5,21 +5,22 @@ import processing.core.PGraphics;
 import processing.core.PImage;
 
 public class ViewerWindowSketch extends PApplet {
-	private final int W;
-	private final int H;
+	private final int w;
+	private final int h;
 	private PImage img;
 	
-	public ViewerWindowSketch(int width, int height) {
-		W = width;
-		H = width;
+	public ViewerWindowSketch(int w, int h) {
+		this.w = w;
+		this.h = h;
 	}
 	
 	public void settings() {
-		size(W, H, "processing.awt.PGraphicsJava2D");
+		size(w, h, "processing.awt.PGraphicsJava2D");
 	}
 	
 	public void setup() {
-		img = createImage(W, H, RGB);
+		surface.setTitle("Large Sketch Viewer");
+		img = createImage(w, h, RGB);
 		noLoop();
 	}
 	
