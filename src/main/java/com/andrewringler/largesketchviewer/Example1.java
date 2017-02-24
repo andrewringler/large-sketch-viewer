@@ -32,7 +32,7 @@ public class Example1 extends PApplet {
 		
 		rectMode(CENTER);
 		rect(width / 2f, height / 2f, rectSize, rectSize);
-		rectSize += rectGrowing ? 0.8 : -0.8;
+		rectSize += rectGrowing ? 1.8 : -1.8;
 		if (rectSize < 10) {
 			rectGrowing = true;
 		}
