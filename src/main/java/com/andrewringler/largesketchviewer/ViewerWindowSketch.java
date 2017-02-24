@@ -23,9 +23,9 @@ public class ViewerWindowSketch extends PApplet {
 	}
 	
 	public void settings() {
-		//		size(w, h, "processing.awt.PGraphicsJava2D");
+		size(w, h, "processing.awt.PGraphicsJava2D");
 		//		size(w, h, "processing.javafx.PGraphicsFX2D");
-		size(w, h, "processing.opengl.PGraphics2D");
+		//		size(w, h, "processing.opengl.PGraphics2D");
 	}
 	
 	public void setup() {
