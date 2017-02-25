@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/andrew/workspace-neon/libs/p3/core.jar" sourcepath="/Users/andrew/workspace-neon/processing"/>
+	<classpathentry kind="output" path="resources/code"/>
+</classpath>

@@ -1,13 +1,4 @@
 .DS_Store
-*.log
-*~
-.classpath
-.gradle/
-.metadata/
-.settings/
-.project
-build/
-generated/
-data/
-bin/
-saved/
+bin
+tmp
+distribution
