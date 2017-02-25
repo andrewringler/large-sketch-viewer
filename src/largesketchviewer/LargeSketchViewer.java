@@ -22,7 +22,7 @@ public class LargeSketchViewer {
 	 * Create a new small screen version of your sketch. Call one time
 	 * in the setup() method of your sketch to initialize this library.
 	 * 
-	 * @example HD1920x1080
+	 * @example Empty
 	 * @param theParent
 	 *            - your sketch, usually pass `this`
 	 * @param frameRate
