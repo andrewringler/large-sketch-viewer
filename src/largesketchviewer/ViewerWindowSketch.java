@@ -15,12 +15,19 @@ public class ViewerWindowSketch extends PApplet {
 	private final int w;
 	private final int h;
 	private final int textSize = 16;
+	private final boolean rotate90deg;
+	private final int imageWidth;
+	private final int imageHeight;
+	
 	private PImage img;
 	
-	public ViewerWindowSketch(PApplet theParent, int w, int h) {
+	public ViewerWindowSketch(PApplet theParent, int canvasWidth, int canvasHeight, int imageWidth, int imageHeight, boolean rotate90deg) {
 		this.theParent = theParent;
-		this.w = w;
-		this.h = h;
+		this.w = canvasWidth;
+		this.h = canvasHeight;
+		this.imageWidth = imageWidth;
+		this.imageHeight = imageHeight;
+		this.rotate90deg = rotate90deg;
 	}
 	
 	public void settings() {
@@ -31,7 +38,7 @@ public class ViewerWindowSketch extends PApplet {
 	
 	public void setup() {
 		surface.setTitle(PREVIEW_WINDOW_TITLE);
-		img = createImage(w - (MARGIN * 2), h - (MARGIN * 2), RGB);
+		img = createImage(imageWidth - (MARGIN * 2), imageHeight - (MARGIN * 2), RGB);
 		noLoop();
 		
 		background(255);
@@ -47,15 +54,21 @@ public class ViewerWindowSketch extends PApplet {
 		textAlign(LEFT, TOP);
 		text("fps: " + theParent.frameRate, MARGIN, TEXT_OFFSET);
 		
+		String widthText = theParent.width + "px";
+		String heightText = theParent.height + "px";
+		if (rotate90deg) {
+			widthText = theParent.height + "px";
+			heightText = theParent.width + "px";
+		}
+		
 		textAlign(CENTER, BOTTOM);
-		text(theParent.width + "px", width / 2f, height - TEXT_OFFSET);
+		text(widthText, width / 2f, height - TEXT_OFFSET);
 		float lineY = height - TEXT_OFFSET - (textSize / 2f);
 		line(MARGIN, lineY, width / 2f - TEXT_BUFFER, lineY);
 		line(width - MARGIN, lineY, width / 2f + TEXT_BUFFER, lineY);
 		line(MARGIN, lineY - END_SIZE, MARGIN, lineY + END_SIZE);
 		line(width - MARGIN, lineY - END_SIZE, width - MARGIN, lineY + END_SIZE);
 		
-		String heightText = theParent.height + "px";
 		pushMatrix();
 		textAlign(CENTER, CENTER);
 		translate(TEXT_OFFSET + textSize / 2f, height / 2f);
@@ -70,7 +83,12 @@ public class ViewerWindowSketch extends PApplet {
 	}
 	
 	public void draw() {
-		image(img, MARGIN, MARGIN);
+		translate(MARGIN, MARGIN);
+		if (rotate90deg) {
+			translate(img.height, 0);
+			rotate(HALF_PI); // 90-deg clockwise
+		}
+		image(img, 0, 0);
 	}
 	
 	public void update(PGraphics g) {
