@@ -19,6 +19,8 @@ In your Sketch, import the library and initialize it in setup. Below is a comple
 
 For more examples see the examples folder.
 
+![Screenshot of Large Sketch Viewer](images/large-sketch-viewer.jpg "Large Sketch Viewer")
+
 
 ## Related: Most Pixels Ever
 This library serves a different purpose than Daniel Shiffman's [Most Pixels Ever](https://github.com/shiffman/Most-Pixels-Ever-Processing) library. Most Pixels Ever is used to span and keep synchronized multiple Processing sketches across large and/or multiple physical screens. Large Sketch Viewer does not do this; this library is only useful for developing for single large screen that is larger than the screen on your development computer.   
