@@ -1,5 +1,3 @@
-A template to build a Library for the Processing programming environment.
-
 Part of the Processing project - http://processing.org
 
 Copyright 2011-2016 Elie Zananiri
