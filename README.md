@@ -23,6 +23,16 @@ For more examples see the examples folder.
 ## Related: Most Pixels Ever
 This library serves a different purpose than Daniel Shiffman's [Most Pixels Ever](https://github.com/shiffman/Most-Pixels-Ever-Processing) library. Most Pixels Ever is used to span and keep synchronized multiple Processing sketches across large and/or multiple physical screens. Large Sketch Viewer does not do this; this library is only useful for developing for single large screen that is larger than the screen on your development computer.   
 
+## Developer
+ * Import the project into Eclipse.
+ * Update sketchbook.location in build.properties
+ * From the menu bar, choose Window → Show View → Ant. A tab with the title "Ant" will pop up on the right side of your Eclipse editor.
+ * Drag the resources/build.xml file in there, and a new item "ProcessingLibs" will appear.
+ * Press the "Play" button inside the "Ant" tab.
+
+
+See [Processing Library Template for Eclipse](https://github.com/processing/processing-library-template) for more detailed instructions.
+
 ## TODO
  * Manually set viewer window resolution
  * Improve performance
