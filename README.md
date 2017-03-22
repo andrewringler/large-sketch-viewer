@@ -19,7 +19,7 @@ In your Sketch, import the library and initialize it in setup. Below is a comple
 
 For more examples see the examples folder.
 
-![Screenshot of Large Sketch Viewer](images/large-sketch-viewer.jpg "Large Sketch Viewer")
+![Screenshot of Large Sketch Viewer](images/large-sketch-viewer.png "Large Sketch Viewer")
 
 
 ## Related: Most Pixels Ever
