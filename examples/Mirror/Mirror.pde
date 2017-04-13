@@ -1,6 +1,6 @@
-/* Rotate
- * Rotate the preview window. This is useful if you will be rotating your final screen. IE you will be hanging a TV sideways
- * or placing your projector on its side.
+/* Mirror
+ * Mirror the preview window. This is useful if you are rear projecting
+ * with your final screen
  */
 
 // *** (Step 1) *** Import library line
@@ -11,10 +11,14 @@ void setup() {
 
   // *** (Step 2) *** Create the small preview (initialize the library)
   // second argument true, states that we want to rotate our preview window
-  LargeSketchViewer.smallPreview(this, true);
+  LargeSketchViewer.smallPreview(this, false, 15, true);
 }
 
 void draw() {
+  // we are rear projecting, so flip our image left-to-right
+  scale(-1, 1);
+  translate(-width, 0);
+
   background(80);
   textAlign(CENTER, CENTER);
   textSize(22);

@@ -16,18 +16,20 @@ public class ViewerWindowSketch extends PApplet {
 	private final int h;
 	private final int textSize = 16;
 	private final boolean rotate90deg;
+	private final boolean flipLeftToRight;
 	private final int imageWidth;
 	private final int imageHeight;
 	
 	private PImage img;
 	
-	public ViewerWindowSketch(PApplet theParent, int canvasWidth, int canvasHeight, int imageWidth, int imageHeight, boolean rotate90deg) {
+	public ViewerWindowSketch(PApplet theParent, int canvasWidth, int canvasHeight, int imageWidth, int imageHeight, boolean rotate90deg, boolean flipLeftToRight) {
 		this.theParent = theParent;
 		this.w = canvasWidth;
 		this.h = canvasHeight;
 		this.imageWidth = imageWidth;
 		this.imageHeight = imageHeight;
 		this.rotate90deg = rotate90deg;
+		this.flipLeftToRight = flipLeftToRight;
 	}
 	
 	public void settings() {
@@ -83,6 +85,10 @@ public class ViewerWindowSketch extends PApplet {
 	}
 	
 	public void draw() {
+		if (flipLeftToRight) {
+			scale(-1, 1);
+			translate(-width, 0);
+		}
 		translate(MARGIN, MARGIN);
 		if (rotate90deg) {
 			translate(img.height, 0);

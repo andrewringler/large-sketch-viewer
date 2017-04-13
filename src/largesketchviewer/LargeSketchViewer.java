@@ -32,7 +32,7 @@ public class LargeSketchViewer {
 	 *            rate for performance reasons
 	 */
 	public static LargeSketchViewer smallPreview(PApplet theParent, float frameRate) {
-		return new LargeSketchViewer(theParent, false, frameRate);
+		return new LargeSketchViewer(theParent, false, frameRate, false);
 	}
 	
 	/**
@@ -46,7 +46,7 @@ public class LargeSketchViewer {
 	 *            - true: rotate the preview window 90°clockwise, this is useful if you will be rotating your final physical screen
 	 */
 	public static LargeSketchViewer smallPreview(PApplet theParent, boolean rotate90deg) {
-		return new LargeSketchViewer(theParent, rotate90deg, DEFAULT_FRAME_RATE);
+		return new LargeSketchViewer(theParent, rotate90deg, DEFAULT_FRAME_RATE, false);
 	}
 	
 	/**
@@ -63,7 +63,26 @@ public class LargeSketchViewer {
 	 *            rate for performance reasons
 	 */
 	public static LargeSketchViewer smallPreview(PApplet theParent, boolean rotate90deg, float frameRate) {
-		return new LargeSketchViewer(theParent, rotate90deg, frameRate);
+		return new LargeSketchViewer(theParent, rotate90deg, frameRate, false);
+	}
+	
+	/**
+	 * Create a new small screen version of your sketch. Call one time
+	 * in the setup() method of your sketch to initialize this library.
+	 * 
+	 * @example Empty
+	 * @param theParent
+	 *            - your sketch, usually pass `this`
+	 * @param rotate90deg
+	 *            - true: rotate the preview window 90°clockwise, this is useful if you will be rotating your final physical screen
+	 * @param frameRate
+	 *            - target frameRate of your preview window, typically this will be lower than your sketch frame
+	 *            rate for performance reasons
+	 * @param flipLeftToRight
+	 *            - flip image left to right, IE mirror, useful if you are rear-projection with your final piece
+	 */
+	public static LargeSketchViewer smallPreview(PApplet theParent, boolean rotate90deg, float frameRate, boolean flipLeftToRight) {
+		return new LargeSketchViewer(theParent, rotate90deg, frameRate, flipLeftToRight);
 	}
 	
 	/**
@@ -75,10 +94,10 @@ public class LargeSketchViewer {
 	 *            - your sketch, usually pass this
 	 */
 	public static LargeSketchViewer smallPreview(PApplet theParent) {
-		return new LargeSketchViewer(theParent, false, DEFAULT_FRAME_RATE);
+		return new LargeSketchViewer(theParent, false, DEFAULT_FRAME_RATE, false);
 	}
 	
-	private LargeSketchViewer(PApplet theParent, boolean rotate90deg, float frameRate) {
+	private LargeSketchViewer(PApplet theParent, boolean rotate90deg, float frameRate, boolean flipLeftToRight) {
 		this.theParent = theParent;
 		// register post with main sketch to capture screen
 		theParent.registerMethod("post", this);
@@ -118,7 +137,7 @@ public class LargeSketchViewer {
 			imageHeight = round(smallWindowWidth);
 		}
 		
-		pSmall = new ViewerWindowSketch(theParent, round(smallWindowWidth), round(smallWindowHeight), imageWidth, imageHeight, rotate90deg);
+		pSmall = new ViewerWindowSketch(theParent, round(smallWindowWidth), round(smallWindowHeight), imageWidth, imageHeight, rotate90deg, flipLeftToRight);
 		PApplet.runSketch(new String[] { "--window-color=#000000", ViewerWindowSketch.class.getCanonicalName() }, pSmall);
 		
 		// register with small window in case user closes it
