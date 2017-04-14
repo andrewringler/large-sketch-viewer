@@ -33,9 +33,12 @@ public class ViewerWindowSketch extends PApplet {
 	}
 	
 	public void settings() {
+		/*
+		 * PGraphicsJava2D, seems stable,
+		 * OpenGL renderers seem to cause issues, perhaps
+		 * classloader conflicts?
+		 */
 		size(w, h, "processing.awt.PGraphicsJava2D");
-		//		size(w, h, "processing.javafx.PGraphicsFX2D");
-		//		size(w, h, "processing.opengl.PGraphics2D");
 	}
 	
 	public void setup() {

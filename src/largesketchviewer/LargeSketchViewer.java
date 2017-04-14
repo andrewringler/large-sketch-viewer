@@ -164,8 +164,13 @@ public class LargeSketchViewer {
 	 * manually stop the main sketch now too
 	 */
 	public void dispose() {
-		theParent.noLoop(); // prevents 3D thread errors during shutdown
-		theParent.exit();
+		try {
+			theParent.noLoop(); // prevents 3D thread errors during shutdown
+			theParent.exit();
+		} catch (Exception e) {
+			// nothing to do here, just
+			// prevent Processing console from showing errors
+		}
 	}
 	
 	/**

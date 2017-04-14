@@ -6,7 +6,7 @@
 import largesketchviewer.*;
 
 void setup() {
-  size(1920, 1080);
+  size(1920, 1080, P3D);
 
   // *** (Step 2) *** Create the small preview (initialize the library)
   LargeSketchViewer.smallPreview(this);

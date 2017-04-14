@@ -6,7 +6,7 @@
 import largesketchviewer.*;
 
 void setup() {
-  size(1920, 1080);
+  size(1920, 1080, P3D);
   frameRate(60);
   
   // Various initialization examples, copy and paste one of the lines
