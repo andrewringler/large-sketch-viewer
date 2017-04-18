@@ -99,6 +99,12 @@ public class LargeSketchViewer {
 	
 	private LargeSketchViewer(PApplet theParent, boolean rotate90deg, float frameRate, boolean flipLeftToRight) {
 		this.theParent = theParent;
+		
+		if (theParent.args != null && theParent.args.length != 0 && theParent.args[0].equals("nopreview")) {
+			// no preview, we are done
+			return;
+		}
+		
 		// register post with main sketch to capture screen
 		theParent.registerMethod("post", this);
 		
@@ -165,7 +171,6 @@ public class LargeSketchViewer {
 	 */
 	public void dispose() {
 		try {
-			theParent.noLoop(); // prevents 3D thread errors during shutdown
 			theParent.exit();
 		} catch (Exception e) {
 			// nothing to do here, just
