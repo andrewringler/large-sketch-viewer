@@ -1,6 +1,7 @@
 package largesketchviewer;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 import processing.core.PGraphics;
 import processing.core.PImage;
 
@@ -22,6 +23,8 @@ public class ViewerWindowSketch extends PApplet {
 	
 	private PImage img;
 	
+	private PFont openSansSemiBold16;
+	
 	public ViewerWindowSketch(PApplet theParent, int canvasWidth, int canvasHeight, int imageWidth, int imageHeight, boolean rotate90deg, boolean flipLeftToRight) {
 		this.theParent = theParent;
 		this.w = canvasWidth;
@@ -30,6 +33,7 @@ public class ViewerWindowSketch extends PApplet {
 		this.imageHeight = imageHeight;
 		this.rotate90deg = rotate90deg;
 		this.flipLeftToRight = flipLeftToRight;
+		
 	}
 	
 	public void settings() {
@@ -44,6 +48,14 @@ public class ViewerWindowSketch extends PApplet {
 	
 	public void setup() {
 		surface.setTitle(PREVIEW_WINDOW_TITLE);
+		
+		/*
+		 * NOTE: we load our own fonts because sometimes
+		 * loading two instances of PApplet causes Processing to not find
+		 * the default fonts
+		 */
+		openSansSemiBold16 = loadFont("OpenSans-Semibold-16.vlw");
+		
 		img = createImage(imageWidth - (MARGIN * 2), imageHeight - (MARGIN * 2), RGB);
 		noLoop();
 		
@@ -54,7 +66,7 @@ public class ViewerWindowSketch extends PApplet {
 		fill(0);
 		stroke(0);
 		strokeWeight(1);
-		textSize(textSize);
+		textFont(openSansSemiBold16);
 		
 		// realized framerate
 		textAlign(LEFT, TOP);

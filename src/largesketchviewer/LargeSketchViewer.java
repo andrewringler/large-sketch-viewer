@@ -120,12 +120,12 @@ public class LargeSketchViewer {
 		float smallWindowWidth = parentWidth;
 		float smallWindowHeight = parentHeight;
 		float ratio = parentWidth / parentHeight;
-		if (smallWindowWidth > theParent.displayWidth) {
+		if (smallWindowWidth > (theParent.displayWidth - buffer)) {
 			// sketch is too wide, shrink it horizontally
 			smallWindowWidth = theParent.displayWidth - buffer;
 			smallWindowHeight = smallWindowWidth / ratio;
 		}
-		if (smallWindowHeight > theParent.displayHeight) {
+		if (smallWindowHeight > (theParent.displayHeight - buffer)) {
 			// sketch is too tall, shrink it
 			smallWindowHeight = theParent.displayHeight - buffer;
 			smallWindowWidth = smallWindowHeight * ratio;
