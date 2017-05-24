@@ -2,6 +2,8 @@ package largesketchviewer;
 
 import static java.lang.Math.round;
 
+import java.awt.image.BufferedImage;
+
 import processing.core.PApplet;
 
 /**
@@ -108,6 +110,9 @@ public class LargeSketchViewer {
 		// register post with main sketch to capture screen
 		theParent.registerMethod("post", this);
 		
+		// register dispose with main sketch so we know when it is closing
+		theParent.registerMethod("dispose", this);
+		
 		float parentWidth = theParent.width;
 		float parentHeight = theParent.height;
 		if (rotate90deg) {
@@ -144,10 +149,6 @@ public class LargeSketchViewer {
 		}
 		
 		pSmall = new ViewerWindowSketch(theParent, round(smallWindowWidth), round(smallWindowHeight), imageWidth, imageHeight, rotate90deg, flipLeftToRight);
-		PApplet.runSketch(new String[] { "--window-color=#000000", ViewerWindowSketch.class.getCanonicalName() }, pSmall);
-		
-		// register with small window in case user closes it
-		pSmall.registerMethod("dispose", this);
 		
 		if (frameRate > 0) {
 			desiredMillisBetweenUpdates = round(1000f / frameRate);
@@ -160,18 +161,18 @@ public class LargeSketchViewer {
 		// limit update frequency to desired frame rate
 		int millisSinceLastUpdate = theParent.millis() - lastUpdateMillis;
 		if (millisSinceLastUpdate >= desiredMillisBetweenUpdates) {
-			pSmall.update(theParent.getGraphics());
+			pSmall.update((BufferedImage) theParent.copy().getNative());
 			lastUpdateMillis = theParent.millis();
 		}
 	}
 	
 	/*
-	 * small window is shutting down, we need to
-	 * manually stop the main sketch now too
+	 * Main sketch is shutting down, we need to
+	 * manually stop small sketch now too
 	 */
 	public void dispose() {
 		try {
-			theParent.exit();
+			pSmall.exit();
 		} catch (Exception e) {
 			// nothing to do here, just
 			// prevent Processing console from showing errors
